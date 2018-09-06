@@ -469,6 +469,9 @@ func (j *Module) deps(ctx android.BottomUpMutatorContext) {
 		if ctx.ModuleName() == "framework" {
 			ctx.AddDependency(ctx.Module(), frameworkResTag, "framework-res")
 		}
+		if ctx.ModuleName() == "org.mokee.platform-res" {
+			ctx.AddDependency(ctx.Module(), frameworkResTag, "framework-res")
+		}
 		if ctx.ModuleName() == "org.mokee.platform" || ctx.ModuleName() == "org.mokee.platform.internal" {
 			ctx.AddDependency(ctx.Module(), mokeeResTag, "org.mokee.platform-res")
 		}

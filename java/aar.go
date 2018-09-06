@@ -168,7 +168,7 @@ func (a *aapt) deps(ctx android.BottomUpMutatorContext, sdkVersion string) {
 		if sdkDep.frameworkResModule != "" {
 			ctx.AddDependency(ctx.Module(), frameworkResTag, sdkDep.frameworkResModule)
 		}
-		if sdkDep.mokeeResModule != "" && ctx.ModuleName() != "org.mokee.platform-res" {
+		if sdkDep.mokeeResModule != "" {
 			ctx.AddDependency(ctx.Module(), mokeeResTag, sdkDep.mokeeResModule)
 		}
 	}
