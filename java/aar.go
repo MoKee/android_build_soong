@@ -182,7 +182,7 @@ func (a *aapt) aapt2Flags(ctx android.ModuleContext, sdkContext sdkContext, mani
 
 	if !hasVersionName {
 		var versionName string
-		if ctx.ModuleName() == "framework-res" || ctx.ModuleName() == "org.lineageos.platform-res" {
+		if ctx.ModuleName() == "framework-res" || ctx.ModuleName() == "org.mokee.platform-res" {
 			// Some builds set AppsDefaultVersionName() to include the build number ("O-123456").  aapt2 copies the
 			// version name of framework-res into app manifests as compileSdkVersionCodename, which confuses things
 			// if it contains the build number.  Use the PlatformVersionName instead.
@@ -202,8 +202,8 @@ func (a *aapt) deps(ctx android.BottomUpMutatorContext, sdkContext sdkContext) {
 	if sdkDep.frameworkResModule != "" {
 		ctx.AddVariationDependencies(nil, frameworkResTag, sdkDep.frameworkResModule)
 	}
-	if sdkDep.lineageResModule != "" {
-		ctx.AddDependency(ctx.Module(), lineageResTag, sdkDep.lineageResModule)
+	if sdkDep.mokeeResModule != "" {
+		ctx.AddDependency(ctx.Module(), mokeeResTag, sdkDep.mokeeResModule)
 	}
 }
 
@@ -339,7 +339,7 @@ func aaptLibs(ctx android.ModuleContext, sdkContext sdkContext) (transitiveStati
 		switch ctx.OtherModuleDependencyTag(module) {
 		case instrumentationForTag:
 			// Nothing, instrumentationForTag is treated as libTag for javac but not for aapt2.
-		case libTag, frameworkResTag, lineageResTag:
+		case libTag, frameworkResTag, mokeeResTag:
 			if exportPackage != nil {
 				sharedLibs = append(sharedLibs, exportPackage)
 			}
@@ -550,8 +550,8 @@ func (a *AARImport) DepsMutator(ctx android.BottomUpMutatorContext) {
 		if sdkDep.useModule && sdkDep.frameworkResModule != "" {
 			ctx.AddVariationDependencies(nil, frameworkResTag, sdkDep.frameworkResModule)
 		}
-		if sdkDep.useModule && sdkDep.lineageResModule != "" {
-			ctx.AddDependency(ctx.Module(), lineageResTag, sdkDep.lineageResModule)
+		if sdkDep.useModule && sdkDep.mokeeResModule != "" {
+			ctx.AddDependency(ctx.Module(), mokeeResTag, sdkDep.mokeeResModule)
 		}
 	}
 
