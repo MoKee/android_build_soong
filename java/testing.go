@@ -153,7 +153,7 @@ func GatherRequiredDepsForTest() string {
 		}
 
 		android_app {
-			name: "org.lineageos.platform-res",
+			name: "org.mokee.platform-res",
 			sdk_version: "core_platform",
 		}
 

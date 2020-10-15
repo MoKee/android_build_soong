@@ -20,7 +20,7 @@ import (
 	"runtime"
 	"strings"
 
-	"lineage/soong/android"
+	"mokee/soong/android"
 
 	"github.com/google/blueprint/proptools"
 )
@@ -134,8 +134,8 @@ type variableProperties struct {
 			Exclude_srcs []string `android:"arch_variant"`
 		} `android:"arch_variant"`
 
-		// include Lineage variables
-		Lineage android.Product_variables
+		// include MoKee variables
+		Mokee android.Product_variables
 	} `android:"arch_variant"`
 }
 
@@ -342,8 +342,8 @@ type productVariables struct {
 
 	BoardUsesRecoveryAsBoot *bool `json:",omitempty"`
 
-	// include Lineage variables
-	Lineage android.ProductVariables
+	// include MoKee variables
+	Mokee android.ProductVariables
 }
 
 func boolPtr(v bool) *bool {
@@ -600,8 +600,8 @@ func createVariableProperties(moduleTypeProps []interface{}, productVariables in
 func createVariablePropertiesType(moduleTypeProps []interface{}, productVariables interface{}) reflect.Type {
 	typ, _ := proptools.FilterPropertyStruct(reflect.TypeOf(productVariables),
 		func(field reflect.StructField, prefix string) (bool, reflect.StructField) {
-			if strings.HasPrefix(prefix, "Product_variables.Lineage") {
-				// Convert Product_variables.Lineage.Foo to Lineage.Foo
+			if strings.HasPrefix(prefix, "Product_variables.Mokee") {
+				// Convert Product_variables.MoKee.Foo to MoKee.Foo
 				_, prefix = splitPrefix(prefix)
 			}
 
