@@ -8,7 +8,7 @@ bootstrap_go_package {
         "soong-android-soongconfig",
         "soong-env",
         "soong-shared",
-        "soong-lineage",
+        "soong-mokee",
     ],
     srcs: [
         "androidmk.go",
