@@ -31,8 +31,6 @@ import (
 	"github.com/google/blueprint/proptools"
 
 	"android/soong/android/soongconfig"
-
-	"mokee/soong/android"
 )
 
 var Bool = proptools.Bool
@@ -599,14 +597,6 @@ func (c *config) BuildNumberFile(ctx PathContext) Path {
 // TODO: take an AndroidModuleContext to select the device name for multi-device builds
 func (c *config) DeviceName() string {
 	return *c.productVariables.DeviceName
-}
-
-func (c *config) JavaSourceOverlays() string {
-	return String(c.productVariables.Mokee.Java_Source_Overlays)
-}
-
-func (c *config) JavaSourceOverlayModuleWhitelist() []string {
-	return android.MokeeConfig.JavaSourceOverlayModuleWhitelist
 }
 
 func (c *config) DeviceResourceOverlays() []string {
